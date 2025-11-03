@@ -1,20 +1,27 @@
 package org.emp.gl.core.launcher;
+import java.util.Random;
+import org.emp.gl.clients.HorlogeGUI;
+import org.emp.gl.clients.Horloge;
+import org.emp.gl.clients.CompteARebours;
+import org.emp.gl.timer.service.TimerService;
+import org.emp.gl.time.service.impl.DummyTimeServiceImpl;
 
-import org.emp.gl.clients.Horloge ;
+import javax.swing.*;
 
-/**
- * Hello world!
- *
- */
 public class App {
 
     public static void main(String[] args) {
-
         testDuTimeService();
     }
 
     private static void testDuTimeService() {
-        Horloge horloge = new Horloge("Num 1") ;
+        TimerService timerService = new DummyTimeServiceImpl();
+
+        // Lancer l'interface graphique
+        SwingUtilities.invokeLater(() -> {
+            HorlogeGUI gui = new HorlogeGUI(timerService);
+            gui.setVisible(true);
+        });
     }
 
     public static void clearScreen() {
